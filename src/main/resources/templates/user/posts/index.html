@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title th:text="#{web.title}"></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/blog-home.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <th:block th:replace="inc/navigation" :: navi></th:block>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+          <h1 class="my-4"><strong th:text="#{web.mainpage.header}"></strong>
+            <small th:text="#{web.mainpage.subtext}"></small>
+          </h1>
+
+          <!-- Blog Post -->
+          <th:block th:each="post :${news.getContent()}" >
+            <div th:include="inc/simplePost :: postData(${post})"></div>
+          </th:block>
+
+          <!-- Pagination -->
+          <ul class="pagination justify-content-center mb-4">
+            <li class="page-item">
+              <a th:if=${news.hasPrevious()} class="page-link" th:href="'/page/' + ${news.previousPageable().getPageNumber()}">&larr; Newer</a>
+            </li>
+            <li class="page-item">
+              <a th:if=${news.hasNext()} class="page-link" th:href="'/page/' + ${news.nextPageable().getPageNumber()}">Older &rarr;</a>
+            </li>
+          </ul>
+
+        </div>
+
+<th:block th:replace="inc/sidebar" :: sidebar></th:block>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <th:block th:replace="inc/footer" :: footer></th:block>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

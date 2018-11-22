@@ -1,0 +1,19 @@
+<html lang="en">
+<!-- Blog Post -->
+    <div th:fragment="postData(data)">
+        <div class="card mb-4">
+            <img class="card-img-top" th:src="@{${'/photos/' + data.getId()}}" alt="Image not found">
+            <div class="card-body">
+                <h2 class="card-title" th:text="${data.getTitle()}"></h2>
+                <p class="card-text" th:text="${data.getProvement()}"></p>
+                <a th:href="'/post/news/' + ${data.getId()}" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+                Posted on <strong th:text="${data.getDate()}"></strong> przez
+                <a href="#" th:text="${data.getAuthor()}"></a>
+            </div>
+        </div>
+    </div>
+
+
+</html>
