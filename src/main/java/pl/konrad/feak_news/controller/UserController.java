@@ -33,4 +33,18 @@ public class UserController {
 
         return"redirect:/login";
     }
+
+    @GetMapping("/registry")
+    public String showRegistryTemp(Model model){
+        model.addAttribute("user", new UserForm());
+        return"/user/service/registry";
+    }
+
+    @PostMapping("/registry")
+    public String registryUser(@ModelAttribute("user") UserForm user ){
+        userService.addNewUser(user);
+
+        return"redirect:/registry";
+    }
+
 }

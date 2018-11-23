@@ -1,11 +1,10 @@
 package pl.konrad.feak_news.model.entities;
 
 import lombok.Data;
+import pl.konrad.feak_news.model.forms.UserForm;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -17,5 +16,15 @@ public class UserEntity {
 
     private String login;
     private String password;
+
+    @OneToOne
+    @JoinColumn(name = "user_details")
+    private UserDetailsEntity userDetails;
+
+    public UserEntity(UserForm user, UserDetailsEntity userDetails){
+        this.login = user.getLogin();
+        this.password = user.getPassword();
+        this.userDetails = userDetails;
+    }
 
 }

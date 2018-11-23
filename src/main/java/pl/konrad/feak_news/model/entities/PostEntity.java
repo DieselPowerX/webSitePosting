@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "feak_news")
-public class PostEntitie {
+public class PostEntity {
     @Id
     @GeneratedValue
     private int id;
@@ -23,7 +23,7 @@ public class PostEntitie {
     private LocalDateTime date;
 
 
-    public PostEntitie(PostForm postForm){
+    public PostEntity(PostForm postForm){
         this.title = postForm.getTitle();
         this.possibleFake = postForm.getPossibleFake();
         this.provement = postForm.getProvement();
@@ -32,6 +32,6 @@ public class PostEntitie {
 
     }
 
-    public PostEntitie(){}
+    public PostEntity(){}
 
 }
