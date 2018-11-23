@@ -17,7 +17,7 @@ public class UserEntity {
     private String login;
     private String password;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_details")
     private UserDetailsEntity userDetails;
 

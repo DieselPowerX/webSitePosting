@@ -47,7 +47,6 @@ public class UserService {
 
 
         UserDetailsEntity userDetails = new UserDetailsEntity(user);
-        userDetailsRepository.save(userDetails);
         userRepository.save(new UserEntity(getHashedPassword(user),userDetails));
     }
 
