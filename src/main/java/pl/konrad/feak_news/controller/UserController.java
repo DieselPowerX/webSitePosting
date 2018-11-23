@@ -29,7 +29,7 @@ public class UserController {
 
     @PostMapping("/login")
     public String logingNewUser(@ModelAttribute UserForm userForm){
-        userService.checkIfUserExist(userForm);
+        userService.tryToLogIn(userForm);
 
         return"redirect:/login";
     }

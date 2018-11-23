@@ -26,5 +26,6 @@ public class UserEntity {
         this.password = user.getPassword();
         this.userDetails = userDetails;
     }
+    public UserEntity(){}
 
 }

@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 
-    @Query(nativeQuery = true, value = "SELECT * FROM users WHERE login=?1 AND password=?2")
-    Optional<UserEntity> findByLoginAndPassword(String login, String password);
+    @Query(nativeQuery = true, value = "SELECT * FROM users WHERE login=?1")
+    Optional<UserEntity> getUserEntityByLogin(String login);
 
 }

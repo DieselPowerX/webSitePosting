@@ -27,4 +27,5 @@ public class UserDetailsEntity {
         this.name = user.getName();
         this.surname = user.getSurname();
     }
+    public UserDetailsEntity(){}
 }
