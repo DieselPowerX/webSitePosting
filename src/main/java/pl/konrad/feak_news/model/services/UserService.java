@@ -40,11 +40,11 @@ public class UserService {
             userSession.setNick(userForm.getLogin());
         }
 
-        System.out.println(userSession.getNick());
     }
 
 
     public void addNewUser(UserForm user) {
+
 
         UserDetailsEntity userDetails = new UserDetailsEntity(user);
         userDetailsRepository.save(userDetails);
