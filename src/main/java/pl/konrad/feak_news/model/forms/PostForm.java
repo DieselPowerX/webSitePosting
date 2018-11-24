@@ -12,4 +12,5 @@ public class PostForm {
     private String feakSource;
     private String author;
     private MultipartFile imageHeader;
+
 }

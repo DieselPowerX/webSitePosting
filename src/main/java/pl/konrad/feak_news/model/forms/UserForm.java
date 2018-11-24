@@ -2,7 +2,6 @@ package pl.konrad.feak_news.model.forms;
 
 import lombok.Data;
 
-import java.time.LocalDate;
 
 @Data
 public class UserForm {
