@@ -20,12 +20,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login/pageid/{id}")
     public String logingNewUser(@ModelAttribute UserForm userForm){
 
         userService.tryToLogIn(userForm);
 
-        return"redirect:/page/0";
+        return"redirect:/page/{id}";
     }
 
     @GetMapping("/registry")

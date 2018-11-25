@@ -12,4 +12,5 @@ import org.springframework.stereotype.Component;
 public class UserSession {
     private boolean isLogin;
     private String nick;
+    private String status;
 }

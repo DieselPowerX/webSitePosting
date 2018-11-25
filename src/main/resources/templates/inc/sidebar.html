@@ -1,6 +1,6 @@
 <html lang="en">
 <!-- Sidebar Widgets Column -->
-<div th:fragment="sidebar(loggedUser,user)"  class="col-md-4">
+<div th:fragment="sidebar(loggedUser, user, pageID)"  class="col-md-4">
 
     <!-- Login/registry -->
     <div class="card my-4">
@@ -11,7 +11,7 @@
                 <span th:text="'zalogowany jako: ' + ${loggedUser.getNick()}"></span>
             </div>
 
-            <form action="/login" method="post" th:unless="${loggedUser.isLogin()}" th:object="${user}" class="input-group">
+            <form th:action="'/login/pageid/' + ${pageID}" method="post" th:unless="${loggedUser.isLogin()}" th:object="${user}" class="input-group">
                 <input type="text" class="form-control" th:field="*{login}" placeholder="Login">
                 <input type="text" class="form-control" th:field="*{password}" placeholder="Password">
                     <span class="input-group-btn">

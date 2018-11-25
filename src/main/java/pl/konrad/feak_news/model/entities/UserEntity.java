@@ -1,15 +1,21 @@
 package pl.konrad.feak_news.model.entities;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import pl.konrad.feak_news.model.forms.UserForm;
 
 
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
 @Data
 @Table(name="users")
 public class UserEntity {
+    public enum Status{
+        USER,ADMIN,MODERATOR
+    }
+
     @Id
     @GeneratedValue
     private int id;
@@ -27,6 +33,10 @@ public class UserEntity {
         this.password = user.getPassword();
         this.userDetails = userDetails;
     }
-    public UserEntity(){}
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+
 
 }

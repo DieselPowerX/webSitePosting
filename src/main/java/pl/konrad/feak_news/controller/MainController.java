@@ -26,11 +26,13 @@ public class MainController {
 
         return "redirect:/page/0";
     }
+
     @GetMapping("/page/{id}")
     public String indexOfPage(Model model, @PathVariable("id") int id){
         model.addAttribute("news", postService.loadAllFeaks(id))
                 .addAttribute("user",new UserForm())
-                .addAttribute("loggedUser", userSession);
+                .addAttribute("loggedUser", userSession)
+                .addAttribute("pageID", id);
 
         return "user/posts/index";
     }
