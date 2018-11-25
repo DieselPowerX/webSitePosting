@@ -9,6 +9,7 @@
 
             <div th:if="${loggedUser.isLogin()}"  class="align-content-lg-center">
                 <span th:text="'zalogowany jako: ' + ${loggedUser.getNick()}"></span>
+                <span th:text="'zalogowany jako: ' + ${loggedUser.getStatus()}"></span>
             </div>
 
             <form th:action="'/login/pageid/' + ${pageID}" method="post" th:unless="${loggedUser.isLogin()}" th:object="${user}" class="input-group">

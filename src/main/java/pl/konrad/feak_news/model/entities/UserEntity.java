@@ -34,8 +34,7 @@ public class UserEntity {
         this.userDetails = userDetails;
     }
 
-    @Enumerated(EnumType.STRING)
-    private Status status;
+
 
 
 

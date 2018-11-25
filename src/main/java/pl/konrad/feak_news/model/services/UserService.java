@@ -7,7 +7,6 @@ import pl.konrad.feak_news.model.UserSession;
 import pl.konrad.feak_news.model.entities.UserDetailsEntity;
 import pl.konrad.feak_news.model.entities.UserEntity;
 import pl.konrad.feak_news.model.forms.UserForm;
-import pl.konrad.feak_news.model.repositories.UserDetailsRepository;
 import pl.konrad.feak_news.model.repositories.UserRepository;
 
 import java.util.Optional;
@@ -17,17 +16,14 @@ import java.util.Optional;
 public class UserService {
 
     final
-    UserRepository userRepository;
-    UserDetailsRepository userDetailsRepository;
-    PasswordHashService passwordHashService;
-    UserSession userSession;
+    private UserRepository userRepository;
+    private PasswordHashService passwordHashService;
+    private UserSession userSession;
 
     @Autowired
-    public UserService(UserRepository userRepository,
-                       UserDetailsRepository userDetailsRepository,
-                       PasswordHashService passwordHashService, UserSession userSession) {
+    public UserService(UserRepository userRepository, PasswordHashService passwordHashService,
+                       UserSession userSession) {
         this.userRepository = userRepository;
-        this.userDetailsRepository = userDetailsRepository;
         this.passwordHashService = passwordHashService;
         this.userSession = userSession;
     }
@@ -37,7 +33,8 @@ public class UserService {
         Optional<UserEntity> user = userRepository.getUserEntityByLogin(userForm.getLogin());
         if(user.isPresent()&& passwordHashService.matches(userForm.getPassword(),user.get().getPassword())){
             userSession.setLogin(true);
-            userSession.setNick(userForm.getLogin());
+            userSession.setNick(user.get().getLogin());
+            userSession.setStatus(user.get().getUserDetails().getStatus());
         }
 
     }

@@ -20,7 +20,7 @@
 
   <body>
 
-    <th:block th:replace="inc/navigation" :: navi></th:block>
+    <th:block th:replace="inc/navigation :: navi(${loggedUser})"></th:block>
 
     <!-- Page Content -->
     <div class="container">
