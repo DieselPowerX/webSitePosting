@@ -6,8 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.servlet.view.RedirectView;
 import pl.konrad.feak_news.model.forms.UserForm;
 import pl.konrad.feak_news.model.services.UserService;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class UserController {
@@ -20,12 +24,11 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/login/pageid/{id}")
-    public String logingNewUser(@ModelAttribute UserForm userForm){
-
+    @PostMapping("/login")
+    public String logingNewUser(HttpServletRequest request, @ModelAttribute UserForm userForm){
         userService.tryToLogIn(userForm);
-
-        return"redirect:/page/{id}";
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
     }
 
     @GetMapping("/registry")
@@ -39,6 +42,13 @@ public class UserController {
         userService.addNewUser(user);
 
         return"redirect:/registry";
+    }
+
+    @GetMapping("/logout")
+    public String logOut(HttpServletRequest request){
+        userService.logOut();
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
     }
 
 }

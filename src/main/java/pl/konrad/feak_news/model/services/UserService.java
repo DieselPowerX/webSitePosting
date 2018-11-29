@@ -42,7 +42,6 @@ public class UserService {
 
     public void addNewUser(UserForm user) {
 
-
         UserDetailsEntity userDetails = new UserDetailsEntity(user);
         userRepository.save(new UserEntity(getHashedPassword(user),userDetails));
     }
@@ -54,5 +53,11 @@ public class UserService {
     private UserForm getHashedPassword(UserForm userForm){
         userForm.setPassword(passwordHashService.hash(userForm.getPassword()));
         return userForm;
+    }
+
+    public void logOut() {
+        userSession.setStatus(null);
+        userSession.setLogin(false);
+        userSession.setNick(null);
     }
 }

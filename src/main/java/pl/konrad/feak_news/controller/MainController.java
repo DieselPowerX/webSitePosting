@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.konrad.feak_news.model.UserSession;
 import pl.konrad.feak_news.model.forms.UserForm;
 import pl.konrad.feak_news.model.services.PostService;
@@ -28,11 +31,10 @@ public class MainController {
     }
 
     @GetMapping("/page/{id}")
-    public String indexOfPage(Model model, @PathVariable("id") int id){
+    public String indexOfPage(Model model, @PathVariable("id") int id ){
         model.addAttribute("news", postService.loadAllFeaks(id))
                 .addAttribute("user",new UserForm())
-                .addAttribute("loggedUser", userSession)
-                .addAttribute("pageID", id);
+                .addAttribute("loggedUser", userSession);
 
         return "user/posts/index";
     }

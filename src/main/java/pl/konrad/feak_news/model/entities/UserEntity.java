@@ -12,9 +12,6 @@ import javax.persistence.*;
 @Data
 @Table(name="users")
 public class UserEntity {
-    public enum Status{
-        USER,ADMIN,MODERATOR
-    }
 
     @Id
     @GeneratedValue
@@ -23,7 +20,7 @@ public class UserEntity {
     private String login;
     private String password;
 
-    
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_details")
     private UserDetailsEntity userDetails;

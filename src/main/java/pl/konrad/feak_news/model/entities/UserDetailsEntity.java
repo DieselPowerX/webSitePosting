@@ -11,6 +11,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name="user_more")
 public class UserDetailsEntity {
+    public enum Status{
+        USER,ADMIN,MODERATOR
+    }
+
     @Id
     @GeneratedValue
     private int id;
@@ -21,8 +25,9 @@ public class UserDetailsEntity {
 
     private String name;
     private String surname;
+
     @Enumerated(EnumType.STRING)
-    private UserEntity.Status status;
+    private Status status;
 
 
     public UserDetailsEntity (UserForm user){
@@ -30,5 +35,6 @@ public class UserDetailsEntity {
         this.birthDay = user.getBirthDate();
         this.name = user.getName();
         this.surname = user.getSurname();
+        this.status = user.getStatus();
     }
 }

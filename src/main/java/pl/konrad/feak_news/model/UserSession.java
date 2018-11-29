@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
-import pl.konrad.feak_news.model.entities.UserEntity;
+import pl.konrad.feak_news.model.entities.UserDetailsEntity;
 
 
 @Component
@@ -13,5 +13,5 @@ import pl.konrad.feak_news.model.entities.UserEntity;
 public class UserSession {
     private boolean isLogin;
     private String nick;
-    private UserEntity.Status status;
+    private UserDetailsEntity.Status status;
 }

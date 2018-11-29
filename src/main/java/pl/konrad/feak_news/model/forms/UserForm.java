@@ -1,7 +1,8 @@
 package pl.konrad.feak_news.model.forms;
 
 import lombok.Data;
-import pl.konrad.feak_news.model.entities.UserEntity;
+import pl.konrad.feak_news.model.entities.UserDetailsEntity;
+
 
 
 @Data
@@ -13,6 +14,7 @@ public class UserForm {
     private String birthDate;
     private String name;
     private String surname;
-    private UserEntity.Status status;
+    private UserDetailsEntity.Status status;
+
 
 }
