@@ -46,8 +46,8 @@ public class UserService {
         userRepository.save(new UserEntity(getHashedPassword(user),userDetails));
     }
 
-    public void getDetails(){
-        System.out.println(userRepository.findById(1).toString());
+    public Optional<UserEntity> getUserByLogin(String login){
+        return userRepository.getUserEntityByLogin(login);
     }
 
     private UserForm getHashedPassword(UserForm userForm){

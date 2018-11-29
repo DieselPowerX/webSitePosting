@@ -34,7 +34,7 @@ public class UserController {
     @GetMapping("/registry")
     public String showRegistryTemp(Model model){
         model.addAttribute("user", new UserForm());
-        return"/user/service/registry";
+        return"/user/services/registry";
     }
 
     @PostMapping("/registry")
