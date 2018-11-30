@@ -1,6 +1,6 @@
 <html lang="en">
 <!-- Sidebar Widgets Column -->
-<div th:fragment="sidebar(loggedUser, user)"  class="col-md-4">
+<div th:fragment="sidebar(loggedUser, user, joke)"  class="col-md-4">
 
     <!-- Login/registry -->
     <div th:if="${!loggedUser.isLogin()}">
@@ -75,8 +75,7 @@
     <!-- Side Widget -->
     <div class="card my-4">
         <h5 class="card-header">Side Widget</h5>
-        <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+        <div th:text="${joke}">
         </div>
     </div>
 
