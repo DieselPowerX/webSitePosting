@@ -43,10 +43,18 @@ public class UserService {
     }
 
 
-    public void addNewUser(UserForm user) {
+    public String addNewUser(UserForm user) {
+        if(!checkIfUserExist(user.getLogin())) {
+            UserDetailsEntity userDetails = new UserDetailsEntity(user);
+            userRepository.save(new UserEntity(getHashedPassword(user), userDetails));
+            return "User added";
+        }
+        return "User with this login already exist";
+    }
 
-        UserDetailsEntity userDetails = new UserDetailsEntity(user);
-        userRepository.save(new UserEntity(getHashedPassword(user),userDetails));
+    private boolean checkIfUserExist(String login) {
+        return userRepository.getUserEntityByLogin(login).isPresent();
+
     }
 
     public Optional<UserEntity> getUserByLogin(String login){

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import pl.konrad.feak_news.model.forms.UserForm;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -21,7 +22,7 @@ public class UserDetailsEntity {
 
     private String email;
     @Column(name="date_of_birth")
-    private String birthDay;
+    private LocalDate birthDay;
 
     private String name;
     private String surname;

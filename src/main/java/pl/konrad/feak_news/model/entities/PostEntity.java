@@ -1,9 +1,9 @@
 package pl.konrad.feak_news.model.entities;
 
 import lombok.Data;
-import org.springframework.web.bind.annotation.GetMapping;
+import lombok.NoArgsConstructor;
 import pl.konrad.feak_news.model.forms.PostForm;
-import pl.konrad.feak_news.model.services.UserService;
+
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "feak_news")
+@NoArgsConstructor
 public class PostEntity {
     @Id
     @GeneratedValue
@@ -38,7 +39,5 @@ public class PostEntity {
         this.userEntity = userEntity;
 
     }
-
-    public PostEntity(){}
 
 }
