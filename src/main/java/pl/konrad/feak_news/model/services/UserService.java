@@ -44,13 +44,30 @@ public class UserService {
 
 
     public String addNewUser(UserForm user) {
-        if(!checkIfUserExist(user.getLogin())) {
+        if(getError(user).equals("user added")) {
             UserDetailsEntity userDetails = new UserDetailsEntity(user);
             userRepository.save(new UserEntity(getHashedPassword(user), userDetails));
-            return "User added";
+            return "user added";
+        }else {
+            return getError(user);
         }
-        return "User with this login already exist";
     }
+
+    private String getError(UserForm user) {
+        if(checkIfUserExist(user.getLogin())){
+            return "User with this login already exist";
+        }else if(!matchedPasswords(user)){
+            return "Passwords are not matched";
+        }else {
+            return "user added";
+        }
+
+    }
+
+    private boolean matchedPasswords(UserForm user) {
+        return user.getPassword().equals(user.getPasswordRepeat());
+    }
+
 
     private boolean checkIfUserExist(String login) {
         return userRepository.getUserEntityByLogin(login).isPresent();
@@ -70,5 +87,6 @@ public class UserService {
         userSession.setStatus(null);
         userSession.setLogin(false);
         userSession.setNick(null);
+        userSession.setWeatherDto(null);
     }
 }

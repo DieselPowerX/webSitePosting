@@ -12,6 +12,7 @@ public class UserForm {
 
     private String login;
     private String password;
+    private String passwordRepeat;
     private String email;
     private LocalDate birthDate;
     private String name;
