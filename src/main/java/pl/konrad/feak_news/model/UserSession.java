@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
+import pl.konrad.feak_news.dtos.WeatherDto;
 import pl.konrad.feak_news.model.entities.UserDetailsEntity;
 
 
@@ -14,4 +15,5 @@ public class UserSession {
     private boolean isLogin;
     private String nick;
     private UserDetailsEntity.Status status;
+    private WeatherDto weatherDto;
 }

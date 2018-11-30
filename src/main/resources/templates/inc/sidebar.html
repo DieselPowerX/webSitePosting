@@ -75,7 +75,7 @@
     <!-- Side Widget -->
     <div class="card my-4">
         <h5 class="card-header">Side Widget</h5>
-        <div th:text="${joke}">
+        <div th:if="${weather != null}" th:text="${weather.getTempDto().getTemperature()}">
         </div>
     </div>
 

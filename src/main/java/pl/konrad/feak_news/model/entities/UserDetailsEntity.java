@@ -25,6 +25,7 @@ public class UserDetailsEntity {
 
     private String name;
     private String surname;
+    private String city;
 
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -35,6 +36,7 @@ public class UserDetailsEntity {
         this.birthDay = user.getBirthDate();
         this.name = user.getName();
         this.surname = user.getSurname();
+        this.city = user.getCity();
         this.status = user.getStatus();
     }
 }

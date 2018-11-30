@@ -14,6 +14,7 @@ public class UserForm {
     private String birthDate;
     private String name;
     private String surname;
+    private String city;
     private UserDetailsEntity.Status status;
 
 

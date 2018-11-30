@@ -19,13 +19,15 @@ public class UserService {
     private UserRepository userRepository;
     private PasswordHashService passwordHashService;
     private UserSession userSession;
+    private WeatherApiSerivce weatherApiSerivce;
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordHashService passwordHashService,
-                       UserSession userSession) {
+                       UserSession userSession, WeatherApiSerivce weatherApiSerivce) {
         this.userRepository = userRepository;
         this.passwordHashService = passwordHashService;
         this.userSession = userSession;
+        this.weatherApiSerivce = weatherApiSerivce;
     }
 
     public void tryToLogIn(UserForm userForm){
@@ -35,6 +37,7 @@ public class UserService {
             userSession.setLogin(true);
             userSession.setNick(user.get().getLogin());
             userSession.setStatus(user.get().getUserDetails().getStatus());
+            userSession.setWeatherDto(weatherApiSerivce.loadWeatherForCity(user.get().getUserDetails().getCity()));
         }
 
     }
