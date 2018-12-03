@@ -24,7 +24,7 @@ public class PostEntity {
     private String feakSource;
     private String author;
     private LocalDateTime date;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="news_user")
     private UserEntity userEntity;
 

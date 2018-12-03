@@ -9,9 +9,10 @@ import pl.konrad.feak_news.model.entities.PostEntity;
 
 
 @Repository
-public interface PostRepository extends CrudRepository<PostEntity, Iterable> {
+public interface PostRepository extends CrudRepository<PostEntity, Integer> {
     Page<PostEntity> findAllByOrderByIdDesc(Pageable pageable);
 
     @Query(nativeQuery = true, value = "SELECT * FROM feak_news WHERE id=?1" )
     PostEntity findById(int id);
+
 }

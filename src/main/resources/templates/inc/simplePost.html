@@ -1,12 +1,17 @@
 <html lang="en">
 <!-- Blog Post -->
-    <div th:fragment="postData(data)">
+    <div th:fragment="postData(userSession, data)">
         <div class="card mb-4">
             <img class="card-img-top" th:src="@{${'/photos/' + data.getId()}}" alt="Image not found">
             <div class="card-body">
                 <h2 class="card-title" th:text="${data.getTitle()}"></h2>
                 <p class="card-text" th:text="${data.getProvement()}"></p>
                 <a th:href="'/post/news/' + ${data.getId()}" class="btn btn-primary">Read More &rarr;</a>
+
+                <div th:if="${userSession.isLogin() && userSession.getStatus() == T(pl.konrad.feak_news.model.entities.UserDetailsEntity.Status).ADMIN}">
+                    <a th:href="'/post/delete/' + ${data.getId()}" class="btn btn-primary">Remove post</a>
+                </div>
+
             </div>
             <div class="card-footer text-muted">
                 Posted on <strong th:text="${data.getDate()}"></strong> przez

@@ -40,4 +40,9 @@ public class PostService {
     public PostEntity getPageOfNews(int id) {
         return postRepository.findById(id);
     }
+
+    public void removePostById(int id) {
+        System.out.println(id);
+        postRepository.deleteById(id);
+    }
 }

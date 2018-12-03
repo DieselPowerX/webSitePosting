@@ -6,6 +6,8 @@ import pl.konrad.feak_news.model.forms.UserForm;
 
 
 import javax.persistence.*;
+import java.util.List;
+
 
 @Entity
 @NoArgsConstructor
@@ -19,7 +21,6 @@ public class UserEntity {
 
     private String login;
     private String password;
-
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_details")

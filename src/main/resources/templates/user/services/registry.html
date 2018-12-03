@@ -43,28 +43,28 @@
         <div class="mt-4 mx-auto " style="width: 200px;">
         <form action="/registry" method="post" th:object="${user}" enctype="multipart/form-data">
             <div class="form-group">
-                <input type="text" th:field="*{login}" placeholder="login">
+                <input type="text" th:field="*{login}" placeholder="login" required>
             </div>
             <div class="form-group">
-                <input type="password" th:field="*{password}" placeholder="password">
+                <input type="password" th:field="*{password}" placeholder="password" required>
             </div>
             <div class="form-group">
-                <input type="password" th:field="*{passwordRepeat}" placeholder="repeat password">
+                <input type="password" th:field="*{passwordRepeat}" placeholder="repeat password" required>
             </div>
             <div class="form-group">
-                <input type="text" th:field="*{email}" placeholder="email">
+                <input type="text" th:field="*{email}" placeholder="email" required>
             </div>
             <div class="form-group">
-                <input type="date" th:field="*{birthDate}" placeholder="date of birth">
+                <input type="date" th:field="*{birthDate}" placeholder="date of birth" required>
             </div>
             <div class="form-group">
-                <input type="text" th:field="*{name}" placeholder="name">
+                <input type="text" th:field="*{name}" placeholder="name" required>
             </div>
             <div class="form-group">
-                <input type="text" th:field="*{surname}" placeholder="surname">
+                <input type="text" th:field="*{surname}" placeholder="surname" required>
             </div>
             <div class="form-group">
-                <input type="text" th:field="*{city}" placeholder="city">
+                <input type="text" th:field="*{city}" placeholder="city" required>
             </div>
             <div hidden="hidden" class="form-group">
             <select th:field="*{status}">

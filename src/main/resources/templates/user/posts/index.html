@@ -36,7 +36,7 @@
 
           <!-- Blog Post -->
           <th:block th:each="post :${news.getContent()}" >
-            <div th:include="inc/simplePost :: postData(${post})"></div>
+            <div th:replace="inc/simplePost :: postData(${loggedUser}, ${post})"></div>
           </th:block>
 
           <!-- Pagination -->

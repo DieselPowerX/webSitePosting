@@ -73,9 +73,11 @@
     </div>
 
     <!-- Side Widget -->
-    <div class="card my-4">
-        <h5 class="card-header">Side Widget</h5>
-        <div th:if="${weather != null}" th:text="${weather.getTempDto().getTemperature()}">
+    <div th:if="${weather != null}" class="card my-4">
+        <h5 class="card-header" th:text="${'Weather for: ' + weather.getName()}"></h5>
+        <div th:if="${weather.getCloudsDto().getClouds() <=20}">male zachmurzenie</div>
+        <div th:if="${weather.getCloudsDto().getClouds() >=60}">calkowite</div>
+        <div th:text="${weather.getTempDto().getTemperature()}">
         </div>
     </div>
 

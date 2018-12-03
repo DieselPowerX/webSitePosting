@@ -15,6 +15,9 @@ public class WeatherDto {
     @JsonProperty("id")
     private int id;
 
+    @JsonProperty("name")
+    private String name;
+
     public static class TempDto {
         @JsonProperty("temp")
         private double temperature;
@@ -25,8 +28,8 @@ public class WeatherDto {
 
     public static class CloudsDto{
         @JsonProperty("all")
-        private double clouds;
-        public double getClouds(){
+        private int clouds;
+        public int getClouds(){
             return clouds;
         }
     }
