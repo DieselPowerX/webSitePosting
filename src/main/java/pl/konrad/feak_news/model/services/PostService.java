@@ -42,7 +42,6 @@ public class PostService {
     }
 
     public void removePostById(int id) {
-        System.out.println(id);
         postRepository.deleteById(id);
     }
 }

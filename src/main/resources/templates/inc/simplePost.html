@@ -6,11 +6,13 @@
             <div class="card-body">
                 <h2 class="card-title" th:text="${data.getTitle()}"></h2>
                 <p class="card-text" th:text="${data.getProvement()}"></p>
-                <a th:href="'/post/news/' + ${data.getId()}" class="btn btn-primary">Read More &rarr;</a>
+                <span>
+                    <a th:href="'/post/news/' + ${data.getId()}" class="btn btn-primary">Read More &rarr;</a>
+                </span>
+                <span class="float-right" th:if="${userSession.isLogin() && userSession.getStatus() == T(pl.konrad.feak_news.model.entities.UserDetailsEntity.Status).ADMIN}">
+                    <a th:href="'/post/delete/' + ${data.getId()}" class="btn btn-danger">Remove post</a>
+                </span>
 
-                <div th:if="${userSession.isLogin() && userSession.getStatus() == T(pl.konrad.feak_news.model.entities.UserDetailsEntity.Status).ADMIN}">
-                    <a th:href="'/post/delete/' + ${data.getId()}" class="btn btn-primary">Remove post</a>
-                </div>
 
             </div>
             <div class="card-footer text-muted">

@@ -29,7 +29,7 @@ public class AdminController {
     @GetMapping("/admin/index")
     public String showAdminPage(Model model){
         model.addAttribute("newFeak", new PostForm())
-                .addAttribute("author",userSession.getNick());
+                .addAttribute("loggedUser",userSession);
 
         return "admin/index";
 

@@ -10,7 +10,6 @@ public class PostForm {
     private String possibleFake;
     private String provement;
     private String feakSource;
-    private String author;
     private MultipartFile imageHeader;
 
 }

@@ -7,6 +7,7 @@ import pl.konrad.feak_news.model.forms.PostForm;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @Entity
@@ -35,9 +36,12 @@ public class PostEntity {
         this.possibleFake = postForm.getPossibleFake();
         this.provement = postForm.getProvement();
         this.feakSource = postForm.getFeakSource();
-        this.author = postForm.getAuthor();
+        this.author = userEntity.getLogin();
         this.userEntity = userEntity;
 
     }
 
+    public String getDate() {
+        return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
 }
