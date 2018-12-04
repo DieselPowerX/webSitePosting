@@ -39,7 +39,7 @@ public class WeatherDto {
         public String getClouds(){
             if(clouds <= 10){
                 return"noClouds";
-            }else if (clouds <=50){
+            }else if (clouds <=60){
                 return"someClouds";
             }else{
                 return"clouds";

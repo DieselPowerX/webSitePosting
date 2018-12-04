@@ -16,32 +16,19 @@ import java.io.IOException;
 public class PostService {
     final
     PostRepository postRepository;
-    ImageService imageService;
-    UserService userService;
+
 
     @Autowired
-    public PostService(PostRepository postRepository, ImageService imageService, UserService userService) {
+    public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
-        this.imageService = imageService;
-        this.userService = userService;
     }
 
     public Page<PostEntity> loadAllFeaks(int page){
         return postRepository.findAllByOrderByIdDesc(PageRequest.of(page,2));
     }
 
-    public boolean addNews(PostForm postForm, String nick) throws IOException {
-        imageService.addImage(postForm.getImageHeader(), postRepository.save(new PostEntity(postForm,userService.getUserByLogin(nick).get())).getId());
-        return true;
-    }
-
-
-
     public PostEntity getPageOfNews(int id) {
         return postRepository.findById(id);
     }
 
-    public void removePostById(int id) {
-        postRepository.deleteById(id);
-    }
 }
