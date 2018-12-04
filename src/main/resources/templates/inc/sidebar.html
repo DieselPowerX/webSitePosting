@@ -82,11 +82,33 @@
     <!-- Side Widget -->
     <div th:if="${weather != null}" class="card my-4">
         <h5 class="card-header" th:text="${'Weather for: ' + weather.getName()}"></h5>
-        <div th:if="${weather.getCloudsDto().getClouds() <=20}">male zachmurzenie</div>
-        <div th:if="${weather.getCloudsDto().getClouds() >=60}">calkowite</div>
-        <div th:text="${weather.getTempDto().getTemperature()}">
-        </div>
-    </div>
+        <div class="row">
+            <div class="col-sm-5 centered">
+                <div class="card-box">
+                    <h1 style="font-size:3vw" class="ml-4 mt-4 font-weight-light media" th:text="${weather.getTempDto().getTemperature()}"></h1>
+                </div>
+            </div>
+            <div class="col-sm-6 ml-1">
+                <td th:if="${weather.getConditionDto().get(0).getState() == 'Rain'}">
+                    <img class="img-fluid mx-2 my-2" src="https://image.flaticon.com/icons/svg/128/128774.svg">
+                </td>
+                <td th:unless="${weather.getConditionDto().get(0).getState() == 'Rain'}">
+                    <span th:switch="${weather.getCloudsDto().getClouds()}">
+                        <span th:case="'someClouds'">
+                            <img class="img-fluid" src="https://image.flaticon.com/icons/svg/128/128780.svg">
+                        </span>
+                        <span th:case="'clouds'">
+                            <img class="img-fluid" src="https://image.flaticon.com/icons/svg/128/128751.svg">
+                        </span>
+                        <span th:case="'noClouds'">
+                            <img class="img-fluid" src="https://image.flaticon.com/icons/svg/128/128781.svg">
+                        </span>
 
+                    </span>
+                </td>
+            </div>
+
+    </div>
+    </div>
 </div>
 </html>
