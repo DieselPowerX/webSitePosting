@@ -47,6 +47,11 @@
                 <div class="card-header">
                     <h3 class="text-center">Statistics</h3>
                 </div>
+                <th:block th:each="map : ${postsPerMod}">
+                    <tr>
+                        <td th:text="${map.entrySet().toString()}"></td>
+                    </tr>
+                </th:block>
             </div>
     </div>
 </div>

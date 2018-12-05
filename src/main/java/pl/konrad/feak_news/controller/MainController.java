@@ -6,11 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import pl.konrad.feak_news.model.UserSession;
-import pl.konrad.feak_news.model.entities.PostEntity;
 import pl.konrad.feak_news.model.forms.UserForm;
 import pl.konrad.feak_news.model.services.PostService;
 
-import java.time.format.DateTimeFormatter;
 
 @Controller
 public class MainController {

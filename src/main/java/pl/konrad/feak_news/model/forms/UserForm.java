@@ -1,6 +1,8 @@
 package pl.konrad.feak_news.model.forms;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import pl.konrad.feak_news.model.entities.UserDetailsEntity;
 
 import java.time.LocalDate;
@@ -8,6 +10,8 @@ import java.time.format.DateTimeFormatter;
 
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserForm {
 
     private String login;

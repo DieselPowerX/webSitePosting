@@ -29,8 +29,10 @@ public class AdminController {
     @GetMapping("/admin/index")
     public String showAdminPage(Model model){
         model.addAttribute("newFeak", new PostForm())
-                .addAttribute("loggedUser",userSession);
-        adminSerivce.showCount();
+                .addAttribute("loggedUser",userSession)
+                .addAttribute("postsPerMod",adminSerivce.showCount());
+
+
 
         return "admin/index";
 
