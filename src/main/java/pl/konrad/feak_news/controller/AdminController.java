@@ -31,17 +31,14 @@ public class AdminController {
         model.addAttribute("newFeak", new PostForm())
                 .addAttribute("loggedUser",userSession)
                 .addAttribute("postsPerMod",adminSerivce.showCount());
-
-
-
-        return "admin/index";
+        return "/admin/addNewPost";
 
     }
 
     @GetMapping("/admin/panel")
     public String showAdminPage(){
 
-        return "/index";
+        return "/admin/addNewPost";
 
     }
 
