@@ -16,13 +16,11 @@
 
 <div class="container">
     <div class="center-block" >
-        <div class="card mt-3">
+        <div class="card mt-3 text-white bg-secondary">
             <div class="card-header">
                 <h3 class="text-center">Insert new post</h3>
             </div>
-            <div class="card-body">
-                <span th:if="${info != null}" th:text="${info ? 'added' : 'not added'}" class="alert alert-success" role="alert"></span>
-                    <br/>
+            <div class="card-body ">
                 <form action="/admin/index" enctype="multipart/form-data" method="post" th:object="${newFeak}">
                     <div class="form-group">
                         <input type="text" th:field="*{title}" class="form-control" placeholder="title" required>
@@ -39,19 +37,35 @@
                     <div class="form-group">
                         <input type="file" th:field="*{imageHeader}" class="form-control" required>
                     </div>
-                        <button type="submit" class="btn btn-primary">Send !</button>
+                        <button type="submit" class="btn btn-danger">Send !</button>
+                    <span th:if="${info != null}" th:text="${info ? 'Added !' : 'Not added !'}" class="alert alert-danger text-center text-success ml-lg-5" role="alert"></span>
                 </form>
             </div>
         </div>
-            <div class="card mt-3">
+            <div class="card mt-3 text-white bg-secondary">
                 <div class="card-header">
                     <h3 class="text-center">Statistics</h3>
                 </div>
-                <th:block th:each="map : ${postsPerMod}">
-                    <tr>
-                        <td th:text="${map.entrySet().toString()}"></td>
-                    </tr>
-                </th:block>
+                <div class="card-deck px-3 py-3">
+                    <div class="card bg-dark text-white">
+                        <div class="card-header text-center">
+                            <h5>Posts per moderator</h5>
+                        </div>
+                    <th:block th:each="map : ${postsPerMod}">
+                        <tr >
+                            <div class="ml-2 mt-2">
+                                <a class="text-warning font-weight-bold" th:text=${map.getLogin()}></a>
+                                <p th:text="${' numbers of posts: ' + map.getCnt()}"></p>
+                            </div>
+
+
+                        </tr>
+                    </th:block>
+                    </div>
+                    <div class="card bg-dark text-white">
+                        <canvas id="myChart" style="max-width: 500px;"></canvas>
+                    </div>
+                </div>
             </div>
     </div>
 </div>

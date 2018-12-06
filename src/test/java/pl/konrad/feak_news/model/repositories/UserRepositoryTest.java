@@ -13,35 +13,33 @@ import pl.konrad.feak_news.model.forms.UserForm;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
 @SpringBootTest
 public class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
 
-    UserForm userFo;
-    UserDetailsEntity userDetailsEnti;
-    UserEntity userEnti;
+    UserForm userForm;
+    UserDetailsEntity userDetailsEntity;
+    UserEntity userEntity;
 
     @BeforeEach
     void setUp() {
-        userFo = new UserForm("SomeGuy", "123", "123", "some@gmail.com", LocalDate.parse("1992-02-20", DateTimeFormatter.ofPattern("yyyy-MM-dd")), "Konrad", "Some", "Warsaw", UserDetailsEntity.Status.ADMIN);
-        userDetailsEnti = new UserDetailsEntity(userFo);
-        userEnti = new UserEntity(userFo, userDetailsEnti);
+        userForm = new UserForm("SomeGuy", "123", "123", "some@gmail.com", LocalDate.parse("1992-02-20", DateTimeFormatter.ofPattern("yyyy-MM-dd")), "Konrad", "Some", "Warsaw", UserDetailsEntity.Status.ADMIN);
+        userDetailsEntity = new UserDetailsEntity(userForm);
+        userEntity = new UserEntity(userForm, userDetailsEntity);
     }
 
     @AfterEach
     void after() {
-        userRepository.delete(userEnti);
+        userRepository.delete(userEntity);
     }
 
 
     @Test
-    void givenPost_WhenFindByAuthor_ThenOk(){
-
-        userRepository.save(userEnti);
-        assertNotNull(userRepository.findByLogin("SomeGuy"));
+    void givenUser_FindByLogin_ThenRemoveUser(){
+        userRepository.save(userEntity);
+        assertEquals(userEntity,userRepository.getUserEntityByLogin(userForm.getLogin()).get());
     }
 
 }

@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.konrad.feak_news.model.entities.PostEntity;
 import pl.konrad.feak_news.model.forms.PostForm;
+import pl.konrad.feak_news.model.interfaceForm.StatisticsOfPostsByModerators;
 import pl.konrad.feak_news.model.repositories.PostRepository;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class AdminSerivce {
@@ -33,7 +33,7 @@ public class AdminSerivce {
         return true;
     }
 
-    public List<Map<String,String>> showCount(){
+    public List<StatisticsOfPostsByModerators> showCount(){
 
         return postRepository.find();
     }

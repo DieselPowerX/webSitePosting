@@ -38,6 +38,13 @@ public class AdminController {
 
     }
 
+    @GetMapping("/admin/panel")
+    public String showAdminPage(){
+
+        return "/index";
+
+    }
+
     @PostMapping("/admin/index")
     public String addNewFeak(@ModelAttribute PostForm postForm, RedirectAttributes redirectAttributes){
         try {

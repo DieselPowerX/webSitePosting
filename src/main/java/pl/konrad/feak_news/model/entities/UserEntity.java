@@ -3,10 +3,8 @@ package pl.konrad.feak_news.model.entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.konrad.feak_news.model.forms.UserForm;
-
-
 import javax.persistence.*;
-import java.util.List;
+
 
 
 @Entity
