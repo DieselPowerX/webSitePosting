@@ -26,30 +26,22 @@ public class AdminController {
     }
 
 
-    @GetMapping("/admin/index")
-    public String showAdminPage(Model model){
+    @GetMapping("/admin/post/add")
+    public String showTempNewPost(Model model){
         model.addAttribute("newFeak", new PostForm())
-                .addAttribute("loggedUser",userSession)
-                .addAttribute("postsPerMod",adminSerivce.showCount());
+                .addAttribute("loggedUser",userSession);
         return "/admin/addNewPost";
 
     }
 
-    @GetMapping("/admin/panel")
-    public String showAdminPage(){
-
-        return "/admin/addNewPost";
-
-    }
-
-    @PostMapping("/admin/index")
-    public String addNewFeak(@ModelAttribute PostForm postForm, RedirectAttributes redirectAttributes){
+    @PostMapping("/admin/post/add")
+    public String addNewPost(@ModelAttribute PostForm postForm, RedirectAttributes redirectAttributes){
         try {
             redirectAttributes.addFlashAttribute("info", adminSerivce.addNews(postForm,userSession.getNick()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "redirect:/admin/index";
+        return "redirect:/admin/post/add";
     }
 
     @GetMapping("/post/delete/{id}")
@@ -57,6 +49,16 @@ public class AdminController {
         adminSerivce.removePostById(id);
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
+    }
+
+    @GetMapping("/admin/dashboard")
+    public String showDashboard(Model model){
+        model.addAttribute("newFeak", new PostForm())
+                .addAttribute("loggedUser",userSession)
+                .addAttribute("postsPerMod",adminSerivce.showCount());
+
+        return "/admin/dashboard";
+
     }
 
 }

@@ -37,4 +37,5 @@ public class AdminSerivce {
 
         return postRepository.find();
     }
+
 }
