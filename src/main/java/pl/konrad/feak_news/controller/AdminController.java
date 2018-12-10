@@ -8,7 +8,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.konrad.feak_news.model.UserSession;
 import pl.konrad.feak_news.model.forms.PostForm;
 import pl.konrad.feak_news.model.services.AdminSerivce;
-import pl.konrad.feak_news.model.services.PostService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -66,6 +65,13 @@ public class AdminController {
 
         return "/admin/dashboard";
 
+    }
+
+    @GetMapping("admin/charts")
+    public String showCharts(Model model){
+        model.addAttribute("loggedUser",userSession);
+
+        return "/admin/charts";
     }
 
 }
