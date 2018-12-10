@@ -60,7 +60,8 @@ public class AdminController {
         model.addAttribute("newFeak", new PostForm())
                 .addAttribute("loggedUser",userSession)
                 .addAttribute("postsPerMod",adminSerivce.showCount())
-                .addAttribute("allPosts", adminSerivce.findAllPostsPerMod());
+                .addAttribute("allPosts", adminSerivce.findAllPostsPerMod())
+                .addAttribute("maxPostsByMod", adminSerivce.countMaxPostBySingleUser());
 
 
         return "/admin/dashboard";

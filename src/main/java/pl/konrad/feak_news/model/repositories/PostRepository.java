@@ -35,4 +35,7 @@ public interface PostRepository extends CrudRepository<PostEntity, Integer> {
     @Transactional(readOnly=false)
     @Query(nativeQuery = true, value = "UPDATE feak_news SET views=views+1 WHERE id=?1")
     void updateViews(int id);
+
+    @Query(nativeQuery = true, value = "SELECT count(*) maximum FROM `feak_news` GROUP BY author ORDER BY maximum DESC LIMIT 1")
+    int maxNumbersOfPostBySingleMod();
 }

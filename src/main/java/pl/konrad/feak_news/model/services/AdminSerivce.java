@@ -45,4 +45,8 @@ public class AdminSerivce {
         return postRepository.findAllPostsPerMod();
     }
 
+    public int countMaxPostBySingleUser(){
+        return postRepository.maxNumbersOfPostBySingleMod();
+    }
+
 }

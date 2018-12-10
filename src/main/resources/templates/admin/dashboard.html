@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
   <head>
 
@@ -71,6 +71,7 @@
                       <th>Title</th>
                       <th>Created date</th>
                       <th>Views</th>
+                      <th>Remove</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -78,8 +79,32 @@
                       <td th:text="${post.getLogin()}"></td>
                       <td th:text="${post.getId()}"></td>
                       <td th:text="${post.getTitle()}"></td>
-                      <td th:text="${post.getDate()}"></td>
+                      <td th:text="${#temporals.format(post.getDate(), 'dd-MM-yyyy HH:mm')}"></td>
                       <td th:text="${post.getViews()}"></td>
+                      <td width="20"><a th:href="'#'+${post.getId()}" style="color:red" data-toggle="modal" >
+                        <div style="text-align: center;"><i class="fas fa-trash-alt"></i></div>
+                        </a>
+
+                        <!-- Modal-->
+                        <div class="modal fade" th:id="${post.getId()}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" th:text="'Removing post id number: ' + ${post.getId()}" ></h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">×</span>
+                                </button>
+                              </div>
+                              <div class="modal-body" th:text="'Do you really want to remove post: '+ ${post.getTitle()}"></div>
+                              <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <a class="btn btn-primary" th:href="'/post/delete/'+ ${post.getId()}">Yes</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -132,6 +157,8 @@
 
 
 
+
+
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -159,6 +186,8 @@
         var ctx = document.getElementById("barChart");
 
         var user = /*[[${postsPerMod}]]*/ 'User Name';
+        var maxRange = /*[[${maxPostsByMod}]]*/ '1';
+
         user.forEach(function(entry) {
             console.log(entry);
         });
@@ -200,7 +229,7 @@
                     yAxes: [{
                         ticks: {
                             min: 0,
-                            max: 10,
+                            max: maxRange+1,
                             maxTicksLimit: 5
                         },
                         gridLines: {

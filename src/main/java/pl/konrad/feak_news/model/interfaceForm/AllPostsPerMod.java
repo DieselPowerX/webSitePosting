@@ -8,4 +8,6 @@ public interface AllPostsPerMod {
     String getTitle();
     LocalDateTime getDate();
     int getViews();
+
 }
+
