@@ -13,4 +13,8 @@ public class ImageService {
             Files.write(Paths.get("photos/" + id), image.getBytes(), StandardOpenOption.CREATE_NEW);
 
     }
+
+    public void removeImage(int id ) throws IOException {
+        Files.delete(Paths.get("photos/" + id));
+    }
 }

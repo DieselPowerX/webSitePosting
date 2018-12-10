@@ -28,6 +28,7 @@ public class PostService {
     }
 
     public PostEntity getPageOfNews(int id) {
+        postRepository.updateViews(id);
         return postRepository.findById(id);
     }
 

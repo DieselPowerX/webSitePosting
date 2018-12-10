@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.konrad.feak_news.model.entities.PostEntity;
 import pl.konrad.feak_news.model.forms.PostForm;
+import pl.konrad.feak_news.model.interfaceForm.AllPostsPerMod;
 import pl.konrad.feak_news.model.interfaceForm.StatisticsOfPostsByModerators;
 import pl.konrad.feak_news.model.repositories.PostRepository;
 
@@ -24,8 +25,9 @@ public class AdminSerivce {
         this.userService = userService;
     }
 
-    public void removePostById(int id) {
+    public void removePostById(int id) throws IOException {
         postRepository.deleteById(id);
+        imageService.removeImage(id);
     }
 
     public boolean addNews(PostForm postForm, String nick) throws IOException {
@@ -36,6 +38,11 @@ public class AdminSerivce {
     public List<StatisticsOfPostsByModerators> showCount(){
 
         return postRepository.find();
+    }
+
+    public List<AllPostsPerMod> findAllPostsPerMod(){
+
+        return postRepository.findAllPostsPerMod();
     }
 
 }

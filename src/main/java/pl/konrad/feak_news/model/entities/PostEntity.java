@@ -25,10 +25,10 @@ public class PostEntity {
     private String feakSource;
     private String author;
     private LocalDateTime date;
+    private int views;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="news_user")
     private UserEntity userEntity;
-
 
 
     public PostEntity(PostForm postForm, UserEntity userEntity){

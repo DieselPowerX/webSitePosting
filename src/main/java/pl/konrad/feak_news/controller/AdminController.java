@@ -46,7 +46,11 @@ public class AdminController {
 
     @GetMapping("/post/delete/{id}")
     public String removePost(@PathVariable("id") int id, HttpServletRequest request){
-        adminSerivce.removePostById(id);
+        try {
+            adminSerivce.removePostById(id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
     }
@@ -55,7 +59,9 @@ public class AdminController {
     public String showDashboard(Model model){
         model.addAttribute("newFeak", new PostForm())
                 .addAttribute("loggedUser",userSession)
-                .addAttribute("postsPerMod",adminSerivce.showCount());
+                .addAttribute("postsPerMod",adminSerivce.showCount())
+                .addAttribute("allPosts", adminSerivce.findAllPostsPerMod());
+
 
         return "/admin/dashboard";
 
