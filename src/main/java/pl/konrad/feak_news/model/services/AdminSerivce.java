@@ -46,7 +46,7 @@ public class AdminSerivce {
     }
 
     public int countMaxPostBySingleUser(){
-        return postRepository.maxNumbersOfPostBySingleMod();
+        return postRepository.maxNumbersOfPostBySingleMod().isPresent()? postRepository.maxNumbersOfPostBySingleMod().get():0;
     }
 
 }

@@ -12,7 +12,7 @@ import pl.konrad.feak_news.model.entities.PostEntity;
 import pl.konrad.feak_news.model.interfaceForm.AllPostsPerMod;
 import pl.konrad.feak_news.model.interfaceForm.StatisticsOfPostsByModerators;
 import java.util.List;
-
+import java.util.Optional;
 
 
 @Repository
@@ -37,5 +37,5 @@ public interface PostRepository extends CrudRepository<PostEntity, Integer> {
     void updateViews(int id);
 
     @Query(nativeQuery = true, value = "SELECT count(*) maximum FROM `feak_news` GROUP BY author ORDER BY maximum DESC LIMIT 1")
-    int maxNumbersOfPostBySingleMod();
+    Optional<Integer> maxNumbersOfPostBySingleMod();
 }
