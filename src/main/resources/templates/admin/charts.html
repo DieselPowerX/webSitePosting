@@ -61,12 +61,12 @@
                 <div class="col-lg-8">
                     <div class="card mb-3">
                         <div class="card-header">
-                            <i class="fas fa-chart-bar"></i>
-                            Bar Chart Example</div>
+                            <i class="fas fa-chart-line"></i>
+                            Number of views for all posts</div>
                         <div class="card-body">
                             <canvas id="barChart" width="100%" height="50"></canvas>
                         </div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                        <div class="card-footer small"><a class="btn btn-info " href="/admin/charts">Refresh</a><a class="btn btn-danger float-right" href="/admin/counter/reset">Reset</a></div>
                     </div>
                 </div>
                 <!--<div class="col-lg-4">
@@ -153,12 +153,17 @@
     var time = [];
     var date;
     var maxViews;
+    var dateFormat;
+    var daysArray=['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
     $.each( map, function(index,value){
-        date = new Date(value).getTime();
-        time.push(date);
-        views.push(index);
-        console.log("Index = " + index + " value = " + date);
+        date = new Date(index);
+        dateFormat = daysArray[date.getDay()-1] + " " + (date.getDate()<10 ? ("0" + date.getDate()): date.getDate())
+            + "-" + ((date.getMonth()+1)<10 ? ("0" + (date.getMonth()+1)): (date.getMonth()+1)) + " " + date.getHours()
+            + ":" + (date.getMinutes()<10 ? ("0" + date.getMinutes()): date.getMinutes());
+
+        time.push(dateFormat);
+        views.push(value);
     });
 
     maxViews=views[views.length-1];
@@ -169,17 +174,14 @@
         data: {
             labels: time,
             datasets: [{
-                label: "Sessions",
+                label: "Views",
                 lineTension: 0.3,
                 backgroundColor: "rgba(2,117,216,0.2)",
                 borderColor: "rgba(2,117,216,1)",
-                pointRadius: 5,
+                pointRadius: 0,
                 pointBackgroundColor: "rgba(2,117,216,1)",
                 pointBorderColor: "rgba(255,255,255,0.8)",
-                pointHoverRadius: 5,
-                pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                pointHitRadius: 50,
-                pointBorderWidth: 2,
+                pointHitRadius: 30,
                 data: views,
             }],
         },
@@ -187,7 +189,7 @@
             scales: {
                 xAxes: [{
                     time: {
-                        unit: 'date'
+                        unit: 'data'
                     },
                     gridLines: {
                         display: false
@@ -199,12 +201,17 @@
                 yAxes: [{
                     ticks: {
                         min: 0,
-                        max: maxViews * 1.05,
+                        max: (maxViews * 1.05).round,
                         maxTicksLimit: 5
                     },
                     gridLines: {
                         color: "rgba(0, 0, 0, .125)",
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'NUMBER OF VIEWS'
                     }
+
                 }],
             },
             legend: {

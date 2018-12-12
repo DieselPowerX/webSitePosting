@@ -70,12 +70,18 @@ public class AdminController {
 
     }
 
-    @GetMapping("admin/charts")
+    @GetMapping("/admin/charts")
     public String showCharts(Model model){
         model.addAttribute("loggedUser",userSession);
         model.addAttribute("activityChart", stats.getAmmountOfViews());
-
         return "/admin/charts";
+    }
+
+    @GetMapping("/admin/counter/reset")
+    public String resetCounter(HttpServletRequest request){
+        stats.resetCounterOfViews();
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
     }
 
 }

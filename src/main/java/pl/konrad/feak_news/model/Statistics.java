@@ -17,7 +17,8 @@ import java.util.Map;
 public class Statistics {
     final
     PostRepository postRepository;
-    Map<Integer,LocalDateTime> ammountOfViews;
+    Map<LocalDateTime,Integer> ammountOfViews;
+
 
     @Autowired
     public Statistics(PostRepository postRepository){
@@ -25,13 +26,12 @@ public class Statistics {
         this.postRepository = postRepository;
     }
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelay = 60000)
     public void countAmounOfViews(){
+        ammountOfViews.put(LocalDateTime.now(),postRepository.getAllViews());
+    }
 
-        ammountOfViews.put(postRepository.getAllViews(),LocalDateTime.now());
-        for (Map.Entry<Integer, LocalDateTime> localDateTimeIntegerEntry : ammountOfViews.entrySet()) {
-            System.out.println(localDateTimeIntegerEntry.getKey());
-            System.out.println(localDateTimeIntegerEntry.getValue());
-        }
+    public void resetCounterOfViews(){
+        ammountOfViews.clear();
     }
 }
