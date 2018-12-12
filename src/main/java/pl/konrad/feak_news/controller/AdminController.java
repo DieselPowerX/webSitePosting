@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pl.konrad.feak_news.model.Statistics;
 import pl.konrad.feak_news.model.UserSession;
 import pl.konrad.feak_news.model.forms.PostForm;
 import pl.konrad.feak_news.model.services.AdminSerivce;
@@ -17,11 +18,13 @@ public class AdminController {
     final
     private AdminSerivce adminSerivce;
     private UserSession userSession;
+    private Statistics stats;
 
     @Autowired
-    public AdminController(AdminSerivce adminSerivce, UserSession userSession) {
+    public AdminController(AdminSerivce adminSerivce, UserSession userSession, Statistics stats) {
         this.adminSerivce = adminSerivce;
         this.userSession = userSession;
+        this.stats = stats;
     }
 
 
@@ -70,6 +73,7 @@ public class AdminController {
     @GetMapping("admin/charts")
     public String showCharts(Model model){
         model.addAttribute("loggedUser",userSession);
+        model.addAttribute("activityChart", stats.getAmmountOfViews());
 
         return "/admin/charts";
     }

@@ -38,4 +38,7 @@ public interface PostRepository extends CrudRepository<PostEntity, Integer> {
 
     @Query(nativeQuery = true, value = "SELECT count(*) maximum FROM `feak_news` GROUP BY author ORDER BY maximum DESC LIMIT 1")
     Optional<Integer> maxNumbersOfPostBySingleMod();
+
+    @Query(nativeQuery = true, value = "SELECT sum(views) FROM feak_news")
+    int getAllViews();
 }
