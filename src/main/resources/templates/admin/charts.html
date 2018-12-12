@@ -46,16 +46,6 @@
                 <li class="breadcrumb-item active">Charts</li>
             </ol>
 
-            <!-- Area Chart Example
-            <div class="card mb-3">
-                <div class="card-header">
-                    <i class="fas fa-chart-area"></i>
-                    Area Chart Example</div>
-                <div class="card-body">
-                    <canvas id="myAreaChart" width="100%" height="30"></canvas>
-                </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>-->
 
             <div class="row">
                 <div class="col-lg-8">
@@ -69,17 +59,16 @@
                         <div class="card-footer small"><a class="btn btn-info " href="/admin/charts">Refresh</a><a class="btn btn-danger float-right" href="/admin/counter/reset">Reset</a></div>
                     </div>
                 </div>
-                <!--<div class="col-lg-4">
+                <div class="col-lg-4">
                     <div class="card mb-3">
                         <div class="card-header">
                             <i class="fas fa-chart-pie"></i>
-                            Pie Chart Example</div>
+                            Pie Chart of posts per moderator</div>
                         <div class="card-body">
                             <canvas id="myPieChart" width="100%" height="100"></canvas>
                         </div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                     </div>
-                </div>-->
+                </div>
             </div>
 
             <p class="small text-center text-muted my-5">
@@ -220,7 +209,33 @@
         }
     });
 </script>
+<script th:inline="javascript">
+    Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#292b2c';
 
+    var user = /*[[${postsPerMod}]]*/ 'User Name';
+
+    var userName = [];
+    var count = [];
+    var i;
+    for (i = 0; i < user.length; i++) {
+        userName.push(user[i]['login']);
+        count.push(user[i]['cnt']);
+    }
+    // Pie Chart Example
+    var ctx = document.getElementById("myPieChart");
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: userName,
+            datasets: [{
+                data: count,
+                backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745', '#d7d1dc', '#ffc107', '#dc75c4',
+                    '#36dca8', '#25ffe4', '#5ea4a7', '#dc0800', '#ffc107', '#1729a7']
+            }]
+        }
+    });
+</script>
 </body>
 
 </html>

@@ -72,8 +72,10 @@ public class AdminController {
 
     @GetMapping("/admin/charts")
     public String showCharts(Model model){
-        model.addAttribute("loggedUser",userSession);
-        model.addAttribute("activityChart", stats.getAmmountOfViews());
+        model.addAttribute("loggedUser",userSession)
+            .addAttribute("activityChart", stats.getAmmountOfViews())
+            .addAttribute("postsPerMod",adminSerivce.showCount());
+
         return "/admin/charts";
     }
 
