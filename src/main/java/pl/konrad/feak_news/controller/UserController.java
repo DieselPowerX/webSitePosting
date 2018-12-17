@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pl.konrad.feak_news.model.UserSession;
 import pl.konrad.feak_news.model.forms.UserForm;
 import pl.konrad.feak_news.model.services.UserService;
 
@@ -17,10 +18,12 @@ public class UserController {
 
     final
     UserService userService;
+    UserSession userSession;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserSession userSession) {
         this.userService = userService;
+        this.userSession = userSession;
     }
 
     @PostMapping("/login")
@@ -32,7 +35,9 @@ public class UserController {
 
     @GetMapping("/registry")
     public String showRegistryTemp(Model model){
-        model.addAttribute("user", new UserForm());
+        model.addAttribute("user", new UserForm())
+                .addAttribute("loggedUser", userSession);
+
         return"/user/services/registry";
     }
 

@@ -10,6 +10,8 @@ import pl.konrad.feak_news.model.forms.UserForm;
 import pl.konrad.feak_news.model.services.PostService;
 
 
+
+
 @Controller
 public class MainController {
     final
@@ -21,6 +23,8 @@ public class MainController {
     public MainController(PostService postService, UserSession userSession) {
         this.postService = postService;
         this.userSession = userSession;
+
+
     }
 
     @GetMapping("/")
