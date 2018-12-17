@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.konrad.feak_news.model.forms.UserForm;
 import javax.persistence.*;
-
+import java.util.List;
 
 
 @Entity
@@ -23,6 +23,10 @@ public class UserEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_details")
     private UserDetailsEntity userDetails;
+
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PostEntity> postEntity;
+
 
     public UserEntity(UserForm user, UserDetailsEntity userDetails){
         this.login = user.getLogin();

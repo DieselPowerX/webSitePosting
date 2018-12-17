@@ -8,6 +8,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.konrad.feak_news.model.Statistics;
 import pl.konrad.feak_news.model.UserSession;
 import pl.konrad.feak_news.model.forms.PostForm;
+import pl.konrad.feak_news.model.forms.UserForm;
 import pl.konrad.feak_news.model.services.AdminSerivce;
 
 import javax.servlet.http.HttpServletRequest;
@@ -82,6 +83,22 @@ public class AdminController {
     @GetMapping("/admin/counter/reset")
     public String resetCounter(HttpServletRequest request){
         stats.resetCounterOfViews();
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+    }
+
+    @GetMapping("/admin/users/list")
+    public String getUsersList(Model model){
+        model.addAttribute("loggedUser",userSession)
+                .addAttribute("allUsers", adminSerivce.getAllUsers())
+                .addAttribute("user", new UserForm());
+        return "/admin/usersList";
+    }
+
+    @GetMapping("/admin/users/remove/{id}")
+    public String removeUserById(@PathVariable("id") int id, HttpServletRequest request){
+        adminSerivce.removeUserById(id);
+
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
     }

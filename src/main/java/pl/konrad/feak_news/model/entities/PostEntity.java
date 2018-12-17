@@ -43,6 +43,7 @@ public class PostEntity {
     public String getDate() {
         return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
+
     public PostEntity(PostForm postForm){
         this.title = postForm.getTitle();
         this.possibleFake = postForm.getPossibleFake();
