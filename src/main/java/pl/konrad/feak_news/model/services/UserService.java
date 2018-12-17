@@ -45,8 +45,7 @@ public class UserService {
 
     public String addNewUser(UserForm user) {
         if(getError(user).equals("user added")) {
-            UserDetailsEntity userDetails = new UserDetailsEntity(user);
-            userRepository.save(new UserEntity(getHashedPassword(user), userDetails));
+            userRepository.save(new UserEntity(getHashedPassword(user)));
             return "user added";
         }else {
             return getError(user);

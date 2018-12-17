@@ -28,10 +28,10 @@ public class UserEntity {
     private List<PostEntity> postEntity;
 
 
-    public UserEntity(UserForm user, UserDetailsEntity userDetails){
+    public UserEntity(UserForm user){
         this.login = user.getLogin();
         this.password = user.getPassword();
-        this.userDetails = userDetails;
+        this.userDetails = new UserDetailsEntity(user);
     }
 
 

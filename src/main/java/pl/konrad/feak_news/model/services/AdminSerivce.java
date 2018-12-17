@@ -3,8 +3,10 @@ package pl.konrad.feak_news.model.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.konrad.feak_news.model.entities.PostEntity;
+import pl.konrad.feak_news.model.entities.UserDetailsEntity;
 import pl.konrad.feak_news.model.entities.UserEntity;
 import pl.konrad.feak_news.model.forms.PostForm;
+import pl.konrad.feak_news.model.forms.UserForm;
 import pl.konrad.feak_news.model.interfaceForm.AllPostsPerMod;
 import pl.konrad.feak_news.model.interfaceForm.StatisticsOfPostsByModerators;
 import pl.konrad.feak_news.model.repositories.PostRepository;
@@ -61,5 +63,13 @@ public class AdminSerivce {
 
         userRepository.deleteById(id);
 
+    }
+
+    public void editUser(UserForm userForm, int id) {
+        UserEntity user = userRepository.findById(id).get();
+        user.setLogin(userForm.getLogin());
+        user.setUserDetails(new UserDetailsEntity(userForm));
+
+        userRepository.save(user);
     }
 }

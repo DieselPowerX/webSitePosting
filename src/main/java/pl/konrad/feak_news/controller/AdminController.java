@@ -103,4 +103,10 @@ public class AdminController {
         return "redirect:" + referer;
     }
 
+    @PostMapping("/admin/users/edit/{id}")
+    public String editUser(@PathVariable("id") int id, @ModelAttribute UserForm userForm){
+        adminSerivce.editUser(userForm,id);
+        return "redirect:/admin/users/list";
+    }
+
 }

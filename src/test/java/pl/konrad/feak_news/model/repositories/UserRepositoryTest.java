@@ -26,8 +26,7 @@ public class UserRepositoryTest {
     @BeforeEach
     void setUp() {
         userForm = new UserForm("SomeGuy", "123", "123", "some@gmail.com", LocalDate.parse("1992-02-20", DateTimeFormatter.ofPattern("yyyy-MM-dd")), "Konrad", "Some", "Warsaw", UserDetailsEntity.Status.ADMIN);
-        userDetailsEntity = new UserDetailsEntity(userForm);
-        userEntity = new UserEntity(userForm, userDetailsEntity);
+        userEntity = new UserEntity(userForm);
     }
 
     @AfterEach

@@ -72,7 +72,7 @@
                                 <td th:text="${user.getLogin()}"></td>
                                 <td th:text="${user.getUserDetails().getName()}"></td>
                                 <td th:text="${user.getUserDetails().getSurname()}"></td>
-                                <td th:text="${user.getUserDetails().getStatus()}"></td>
+                                <td width="10%" th:text="${user.getUserDetails().getStatus()}"></td>
 
                                 <!--edit user-->
                                 <td width="5%"><a th:href="'#one'+${user.getId()}" onclick="openModal()" style="color:darkblue" data-toggle="modal" >
@@ -83,47 +83,68 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" th:text="'Removing user: id ' + ${user.getId()}" ></h5>
+                                                    <h5 class="modal-title" th:text="'Editing user: id ' + ${user.getId()}" ></h5>
                                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">×</span>
                                                     </button>
                                                 </div>
 
 
-                                                <div class="modal-body" >
-                                                    <form action="/registry" method="post" th:object="${user}" enctype="multipart/form-data">
-                                                        <div class="form-group">
-                                                            <input type="text" th:name="login" th:value="${user.getLogin()}" required/>
+                                                <div class="modal-body">
+                                                    <form  th:action="'/admin/users/edit/'+${user.getId()}" method="post" th:object="${user}" enctype="multipart/form-data">
+                                                        <div class="form-group row">
+                                                            <label for="inputLogin" class="col-sm-3 col-form-label">Login</label>
+                                                            <div class="col-sm-9">
+                                                                <input id="inputLogin" class="form-control" type="text" th:name="login" th:value="${user.getLogin()}" required/>
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <input type="text" th:name="email" th:value="${user.getUserDetails().getEmail()}" required/>
+                                                        <div class="form-group row">
+                                                            <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
+                                                            <div class="col-sm-9">
+                                                                <input id="inputEmail" class="form-control" type="text" th:name="email" th:value="${user.getUserDetails().getEmail()}" required/>
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <input type="date" th:name="birthDate" th:value="${user.getUserDetails().getBirthDay()}" required/>
+                                                        <div class="form-group row">
+                                                            <label for="inputData" class="col-sm-3 col-form-label">Birth date</label>
+                                                            <div class="col-sm-9">
+                                                                <input id="inputData" class="form-control" type="date" th:name="birthDate" th:value="${user.getUserDetails().getBirthDay()}" required/>
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <input type="text" th:name="name" th:value="${user.getUserDetails().getName()}" required/>
+                                                        <div class="form-group row">
+                                                            <label for="inputName" class="col-sm-3 col-form-label">Name</label>
+                                                            <div class="col-sm-9">
+                                                                <input id="inputName" class="form-control" type="text" th:name="name" th:value="${user.getUserDetails().getName()}" required/>
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <input type="text" th:name="surname" th:value="${user.getUserDetails().getSurname()}" required/>
+                                                        <div class="form-group row">
+                                                            <label for="inputSurname" class="col-sm-3 col-form-label">Surname</label>
+                                                            <div class="col-sm-9">
+                                                                <input id="inputSurname" class="form-control" type="text" th:name="surname" th:value="${user.getUserDetails().getSurname()}" required/>
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <input type="text" th:name="city" th:value="${user.getUserDetails().getCity()}" required/>
+                                                        <div class="form-group row">
+                                                            <label for="inputCity" class="col-sm-3 col-form-label">City</label>
+                                                            <div class="col-sm-9">
+                                                                <input id="inputCity" class="form-control" type="text" th:name="city" th:value="${user.getUserDetails().getCity()}" required/>
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <select th:name="status" >
-                                                                <option th:value="${user.getUserDetails().getStatus()}" selected hidden><span th:text="${user.getUserDetails().getStatus()}"></span></option>
-                                                                <option value="USER">USER</option>
-                                                                <option value="MODERATOR">MODERATOR</option>
-                                                                <option value="ADMIN">ADMIN</option>
-                                                            </select>
+                                                        <div class="form-group row">
+                                                            <label for="inputStatus" class="col-sm-3 col-form-label">Status</label>
+                                                            <div class="col-sm-9">
+                                                                <select id="inputStatus" class="form-control" th:name="status" >
+                                                                    <option th:value="${user.getUserDetails().getStatus()}" selected hidden><span th:text="${user.getUserDetails().getStatus()}"></span></option>
+                                                                    <option value="USER">USER</option>
+                                                                    <option value="MODERATOR">MODERATOR</option>
+                                                                    <option value="ADMIN">ADMIN</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                        <button type="submit" class="btn btn-secondary">Register</button>
+
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="btn btn-primary">Edit</button>
+                                                        </div>
                                                     </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                    <a class="btn btn-primary" th:href="'/admin/users/remove/'+ ${user.getId()}">Yes</a>
                                                 </div>
                                             </div>
                                         </div>
