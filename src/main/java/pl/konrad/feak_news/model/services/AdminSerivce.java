@@ -67,8 +67,17 @@ public class AdminSerivce {
 
     public void editUser(UserForm userForm, int id) {
         UserEntity user = userRepository.findById(id).get();
+        UserDetailsEntity userDetails = user.getUserDetails();
+
         user.setLogin(userForm.getLogin());
-        user.setUserDetails(new UserDetailsEntity(userForm));
+        userDetails.setName(userForm.getName());
+        userDetails.setSurname(userForm.getSurname());
+        userDetails.setEmail(userForm.getEmail());
+        userDetails.setBirthDay(userForm.getBirthDate());
+        userDetails.setCity(userForm.getCity());
+        userDetails.setStatus(userForm.getStatus());
+
+        user.setUserDetails(userDetails);
 
         userRepository.save(user);
     }

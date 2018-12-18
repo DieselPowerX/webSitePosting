@@ -28,7 +28,9 @@ public class Statistics {
 
     @Scheduled(fixedDelay = 60000)
     public void countAmounOfViews(){
-        ammountOfViews.put(LocalDateTime.now(),postRepository.getAllViews());
+        if (postRepository.getAllViews().isPresent()) {
+            ammountOfViews.put(LocalDateTime.now(), postRepository.getAllViews().get());
+        }
     }
 
     public void resetCounterOfViews(){

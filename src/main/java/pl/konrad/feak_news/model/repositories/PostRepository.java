@@ -22,13 +22,13 @@ public interface PostRepository extends CrudRepository<PostEntity, Integer> {
     @Query(nativeQuery = true, value = "SELECT * FROM feak_news WHERE id=?1" )
     PostEntity findById(int id);
 
-    @Query(nativeQuery = true, value = "SELECT login, COUNT(*) AS cnt FROM feak_news JOIN user_more ON user_more.id = feak_news.news_user JOIN users ON user_more.id = users.user_details GROUP BY users.login")
+    @Query(nativeQuery = true, value = "SELECT login, COUNT(*) AS cnt FROM feak_news JOIN users ON users.id = feak_news.news_user JOIN user_more ON user_more.id = users.user_details GROUP BY users.login")
     List<StatisticsOfPostsByModerators> find();
 
     @Query(nativeQuery = true, value = "SELECT * FROM feak_news WHERE author=?1")
     List<PostEntity> findAllByAuthor(String someGuy);
 
-    @Query(nativeQuery = true, value = "SELECT login, feak_news.id, title, date, views FROM feak_news JOIN user_more ON user_more.id = feak_news.news_user JOIN users ON user_more.id = users.user_details ORDER BY date DESC")
+    @Query(nativeQuery = true, value = "SELECT login, feak_news.id, title, date, views FROM feak_news JOIN users ON users.id = feak_news.news_user JOIN user_more ON user_more.id = users.user_details ORDER BY date DESC")
     List<AllPostsPerMod> findAllPostsPerMod();
 
     @Modifying
@@ -40,5 +40,5 @@ public interface PostRepository extends CrudRepository<PostEntity, Integer> {
     Optional<Integer> maxNumbersOfPostBySingleMod();
 
     @Query(nativeQuery = true, value = "SELECT sum(views) FROM feak_news")
-    int getAllViews();
+    Optional<Integer> getAllViews();
 }

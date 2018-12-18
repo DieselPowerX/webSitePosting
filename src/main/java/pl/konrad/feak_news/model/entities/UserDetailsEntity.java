@@ -6,6 +6,7 @@ import pl.konrad.feak_news.model.forms.UserForm;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -30,6 +31,7 @@ public class UserDetailsEntity {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
 
 
     public UserDetailsEntity (UserForm user){

@@ -24,8 +24,7 @@ public class UserEntity {
     @JoinColumn(name = "user_details")
     private UserDetailsEntity userDetails;
 
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<PostEntity> postEntity;
+
 
 
     public UserEntity(UserForm user){
