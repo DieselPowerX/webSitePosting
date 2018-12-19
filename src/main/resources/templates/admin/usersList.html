@@ -64,6 +64,7 @@
                                 <th>Status</th>
                                 <th>Edit</th>
                                 <th>Remove</th>
+                                <th>Recover password</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -174,7 +175,10 @@
                                         </div>
                                     </div>
                                 </td>
-
+                                <td width="10%"><a th:href="'two'+ ${user.getId()}" style="color:darkgreen" data-toggle="modal" >
+                                    <div style="text-align: center;"><i class="fas fa-reply"></i></div>
+                                </a>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

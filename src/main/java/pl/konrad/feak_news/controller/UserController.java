@@ -33,18 +33,11 @@ public class UserController {
         return "redirect:"+ referer;
     }
 
-    @GetMapping("/registry")
-    public String showRegistryTemp(Model model){
-        model.addAttribute("user", new UserForm())
-                .addAttribute("loggedUser", userSession);
-
-        return"/user/services/registry";
-    }
-
     @PostMapping("/registry")
-    public String registryUser(@ModelAttribute("user") UserForm user, RedirectAttributes redirectAttributes){
-        redirectAttributes.addFlashAttribute("info", userService.addNewUser(user));
-        return"redirect:/registry";
+    public String registryUser(@ModelAttribute("userReg") UserForm user, HttpServletRequest request){
+        userService.addNewUser(user);
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
 
     }
 

@@ -37,6 +37,7 @@ public class MainController {
     public String indexOfPage(Model model, @PathVariable("id") int id ){
         model.addAttribute("news", postService.loadAllFeaks(id))
                 .addAttribute("user",new UserForm())
+                .addAttribute("userReg",new UserForm())
                 .addAttribute("loggedUser", userSession)
                 .addAttribute("weather", userSession.getWeatherDto());
 
@@ -48,6 +49,7 @@ public class MainController {
         model.addAttribute("feakData", postService.getPageOfNews(id))
                 .addAttribute("user",new UserForm())
                 .addAttribute("loggedUser", userSession);
+
 
         return"user/post/index";
     }
